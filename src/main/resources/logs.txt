@@ -1,0 +1,150 @@
+0;1;2;
+TripleEvent{triple=?v0 @http://db.uwaterloo.ca/~galuc/wsdbm/subscribes ?v1, tagname='0'}
+subject join map
+{?v0=[TripleEvent{triple=?v0 @http://db.uwaterloo.ca/~galuc/wsdbm/likes ?v2, tagname='2'}]}
+object join map
+{?v1=[]}
+predicate join map
+{http://db.uwaterloo.ca/~galuc/wsdbm/subscribes=[]}
+---------
+TripleEvent{triple=?v2 @http://schema.org/caption ?v3, tagname='1'}
+subject join map
+{?v2=[TripleEvent{triple=?v0 @http://db.uwaterloo.ca/~galuc/wsdbm/likes ?v2, tagname='2'}]}
+object join map
+{?v3=[]}
+predicate join map
+{http://schema.org/caption=[]}
+---------
+TripleEvent{triple=?v0 @http://db.uwaterloo.ca/~galuc/wsdbm/likes ?v2, tagname='2'}
+subject join map
+{?v0=[TripleEvent{triple=?v0 @http://db.uwaterloo.ca/~galuc/wsdbm/subscribes ?v1, tagname='0'}]}
+object join map
+{?v2=[TripleEvent{triple=?v2 @http://schema.org/caption ?v3, tagname='1'}]}
+predicate join map
+{http://db.uwaterloo.ca/~galuc/wsdbm/likes=[]}
+---------
+0;2;1;
+TripleEvent{triple=?v0 @http://db.uwaterloo.ca/~galuc/wsdbm/subscribes ?v1, tagname='0'}
+subject join map
+{?v0=[TripleEvent{triple=?v0 @http://db.uwaterloo.ca/~galuc/wsdbm/likes ?v2, tagname='2'}]}
+object join map
+{?v1=[]}
+predicate join map
+{http://db.uwaterloo.ca/~galuc/wsdbm/subscribes=[]}
+---------
+TripleEvent{triple=?v0 @http://db.uwaterloo.ca/~galuc/wsdbm/likes ?v2, tagname='2'}
+subject join map
+{?v0=[TripleEvent{triple=?v0 @http://db.uwaterloo.ca/~galuc/wsdbm/subscribes ?v1, tagname='0'}]}
+object join map
+{?v2=[TripleEvent{triple=?v2 @http://schema.org/caption ?v3, tagname='1'}]}
+predicate join map
+{http://db.uwaterloo.ca/~galuc/wsdbm/likes=[]}
+---------
+TripleEvent{triple=?v2 @http://schema.org/caption ?v3, tagname='1'}
+subject join map
+{?v2=[TripleEvent{triple=?v0 @http://db.uwaterloo.ca/~galuc/wsdbm/likes ?v2, tagname='2'}]}
+object join map
+{?v3=[]}
+predicate join map
+{http://schema.org/caption=[]}
+---------
+1;0;2;
+TripleEvent{triple=?v2 @http://schema.org/caption ?v3, tagname='1'}
+subject join map
+{?v2=[TripleEvent{triple=?v0 @http://db.uwaterloo.ca/~galuc/wsdbm/likes ?v2, tagname='2'}]}
+object join map
+{?v3=[]}
+predicate join map
+{http://schema.org/caption=[]}
+---------
+TripleEvent{triple=?v0 @http://db.uwaterloo.ca/~galuc/wsdbm/subscribes ?v1, tagname='0'}
+subject join map
+{?v0=[TripleEvent{triple=?v0 @http://db.uwaterloo.ca/~galuc/wsdbm/likes ?v2, tagname='2'}]}
+object join map
+{?v1=[]}
+predicate join map
+{http://db.uwaterloo.ca/~galuc/wsdbm/subscribes=[]}
+---------
+TripleEvent{triple=?v0 @http://db.uwaterloo.ca/~galuc/wsdbm/likes ?v2, tagname='2'}
+subject join map
+{?v0=[TripleEvent{triple=?v0 @http://db.uwaterloo.ca/~galuc/wsdbm/subscribes ?v1, tagname='0'}]}
+object join map
+{?v2=[TripleEvent{triple=?v2 @http://schema.org/caption ?v3, tagname='1'}]}
+predicate join map
+{http://db.uwaterloo.ca/~galuc/wsdbm/likes=[]}
+---------
+1;2;0;
+TripleEvent{triple=?v2 @http://schema.org/caption ?v3, tagname='1'}
+subject join map
+{?v2=[TripleEvent{triple=?v0 @http://db.uwaterloo.ca/~galuc/wsdbm/likes ?v2, tagname='2'}]}
+object join map
+{?v3=[]}
+predicate join map
+{http://schema.org/caption=[]}
+---------
+TripleEvent{triple=?v0 @http://db.uwaterloo.ca/~galuc/wsdbm/likes ?v2, tagname='2'}
+subject join map
+{?v0=[TripleEvent{triple=?v0 @http://db.uwaterloo.ca/~galuc/wsdbm/subscribes ?v1, tagname='0'}]}
+object join map
+{?v2=[TripleEvent{triple=?v2 @http://schema.org/caption ?v3, tagname='1'}]}
+predicate join map
+{http://db.uwaterloo.ca/~galuc/wsdbm/likes=[]}
+---------
+TripleEvent{triple=?v0 @http://db.uwaterloo.ca/~galuc/wsdbm/subscribes ?v1, tagname='0'}
+subject join map
+{?v0=[TripleEvent{triple=?v0 @http://db.uwaterloo.ca/~galuc/wsdbm/likes ?v2, tagname='2'}]}
+object join map
+{?v1=[]}
+predicate join map
+{http://db.uwaterloo.ca/~galuc/wsdbm/subscribes=[]}
+---------
+2;0;1;
+TripleEvent{triple=?v0 @http://db.uwaterloo.ca/~galuc/wsdbm/likes ?v2, tagname='2'}
+subject join map
+{?v0=[TripleEvent{triple=?v0 @http://db.uwaterloo.ca/~galuc/wsdbm/subscribes ?v1, tagname='0'}]}
+object join map
+{?v2=[TripleEvent{triple=?v2 @http://schema.org/caption ?v3, tagname='1'}]}
+predicate join map
+{http://db.uwaterloo.ca/~galuc/wsdbm/likes=[]}
+---------
+TripleEvent{triple=?v0 @http://db.uwaterloo.ca/~galuc/wsdbm/subscribes ?v1, tagname='0'}
+subject join map
+{?v0=[TripleEvent{triple=?v0 @http://db.uwaterloo.ca/~galuc/wsdbm/likes ?v2, tagname='2'}]}
+object join map
+{?v1=[]}
+predicate join map
+{http://db.uwaterloo.ca/~galuc/wsdbm/subscribes=[]}
+---------
+TripleEvent{triple=?v2 @http://schema.org/caption ?v3, tagname='1'}
+subject join map
+{?v2=[TripleEvent{triple=?v0 @http://db.uwaterloo.ca/~galuc/wsdbm/likes ?v2, tagname='2'}]}
+object join map
+{?v3=[]}
+predicate join map
+{http://schema.org/caption=[]}
+---------
+2;1;0;
+TripleEvent{triple=?v0 @http://db.uwaterloo.ca/~galuc/wsdbm/likes ?v2, tagname='2'}
+subject join map
+{?v0=[TripleEvent{triple=?v0 @http://db.uwaterloo.ca/~galuc/wsdbm/subscribes ?v1, tagname='0'}]}
+object join map
+{?v2=[TripleEvent{triple=?v2 @http://schema.org/caption ?v3, tagname='1'}]}
+predicate join map
+{http://db.uwaterloo.ca/~galuc/wsdbm/likes=[]}
+---------
+TripleEvent{triple=?v2 @http://schema.org/caption ?v3, tagname='1'}
+subject join map
+{?v2=[TripleEvent{triple=?v0 @http://db.uwaterloo.ca/~galuc/wsdbm/likes ?v2, tagname='2'}]}
+object join map
+{?v3=[]}
+predicate join map
+{http://schema.org/caption=[]}
+---------
+TripleEvent{triple=?v0 @http://db.uwaterloo.ca/~galuc/wsdbm/subscribes ?v1, tagname='0'}
+subject join map
+{?v0=[TripleEvent{triple=?v0 @http://db.uwaterloo.ca/~galuc/wsdbm/likes ?v2, tagname='2'}]}
+object join map
+{?v1=[]}
+predicate join map
+{http://db.uwaterloo.ca/~galuc/wsdbm/subscribes=[]}
+---------
