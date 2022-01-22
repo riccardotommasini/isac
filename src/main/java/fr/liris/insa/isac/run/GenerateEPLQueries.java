@@ -21,6 +21,8 @@ public class GenerateEPLQueries {
         String eplQueries = (args.length > 0 && args[1] != null) ? args[1] : defaulteplQueries;
         String logFile = (args.length > 0 && args[2] != null) ? args[2] : log;
 
+        org.apache.jena.query.ARQ.init();
+
         Query query = QueryFactory.read(sparqlQuery);
         PrefixMapping prefixMapping = query.getPrefixMapping();
 
