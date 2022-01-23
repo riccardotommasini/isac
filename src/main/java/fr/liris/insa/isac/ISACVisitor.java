@@ -1,5 +1,6 @@
 package fr.liris.insa.isac;
 
+import com.espertech.esper.common.client.soda.EPStatementObjectModel;
 import org.apache.jena.graph.Node;
 import org.apache.jena.graph.Triple;
 import org.apache.jena.sparql.algebra.OpVisitor;
@@ -15,7 +16,7 @@ public class ISACVisitor implements OpVisitor {
     public Map<Integer, Triple> tagsd = new HashMap<>();
     public Map<Triple, Integer> tagsi = new HashMap<>();
     public Map<Node, List<String>> projVars = new HashMap<>();
-    public List<String> eplQueries = new ArrayList<>();
+    public List<EPStatementObjectModel> eplQueries = new ArrayList<>();
     private boolean wildcard = true;
 
     public void visit(OpBGP op1) {

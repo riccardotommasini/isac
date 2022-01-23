@@ -105,11 +105,11 @@ public class ISACCompiler {
 
         Op op = Algebra.compile(query);
 
-        compile(op, prefixMapping, "/Users/rictomm/_Projects/jena-examples/src/main/resources/queries2.epl", "/Users/rictomm/_Projects/jena-examples/src/main/resources/logs.txt");
+        compile(op, prefixMapping, "/Users/rictomm/_Projects/jena-examples/src/main/resources/logs.txt");
 
     }
 
-    public static ISACVisitor compile(Op op, PrefixMapping prefixMapping, String eplQueries, String log) throws IOException {
+    public static ISACVisitor compile(Op op, PrefixMapping prefixMapping, String log) throws IOException {
         ISACVisitor opVisitor = new ISACVisitor();
         op.visit(opVisitor);
 
@@ -119,13 +119,12 @@ public class ISACCompiler {
             permutations.put(p.stream().map(tripleEvent -> tripleEvent.tagname).map(integer -> integer + ";").collect(Collectors.joining()), p);
         }
 
-        FileWriter queryWriter = new FileWriter(eplQueries);
         FileWriter logWriter = new FileWriter(log);
 
         List<Map.Entry<String, List<TPEvent>>> sorted = permutations.entrySet().stream().sorted(Map.Entry.comparingByKey()).collect(Collectors.toList());
         sorted.forEach(e -> {
             try {
-                generateEPL(opVisitor, e.getKey(), e.getValue(), queryWriter, logWriter, prefixMapping);
+                generateEPL(opVisitor, e.getKey(), e.getValue(), logWriter, prefixMapping);
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -136,13 +135,12 @@ public class ISACCompiler {
 
 
         logWriter.close();
-        queryWriter.close();
 
 
         return opVisitor;
     }
 
-    private static void generateEPL(ISACVisitor visitor, String patternName, List<TPEvent> p, FileWriter queryWriter, FileWriter logWriter, PrefixMapping prefixMapping) throws IOException {
+    private static void generateEPL(ISACVisitor visitor, String patternName, List<TPEvent> p, FileWriter logWriter, PrefixMapping prefixMapping) throws IOException {
         Map<TPEvent, Map<Node, Set<TPEvent>>[]> joins = visitor.joins;
         Map<Node, List<String>> projVars = visitor.projVars;
         logWriter.write(patternName + LF);
@@ -246,9 +244,7 @@ public class ISACCompiler {
 
         stmt.setFromClause(FromClause.create(PatternStream.create(temp)));
         String s = stmt.toEPL();
-        queryWriter.write(s + ";" + LF);
-        queryWriter.flush();
-        visitor.eplQueries.add(s);
+        visitor.eplQueries.add(stmt);
         epls.add(s);
     }
 

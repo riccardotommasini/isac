@@ -1,0 +1,1 @@
+@name('012') select distinct t1.object as v3, t1.subject as v2, t0.subject as v0 from pattern [every t0=MyTriple(predicate="subscribes") -> every t1=MyTriple(predicate="caption") -> t2=MyTriple(subject=t0.subject and object="likes" and object=t1.subject)]
