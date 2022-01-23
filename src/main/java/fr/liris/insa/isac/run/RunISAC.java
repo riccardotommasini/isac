@@ -41,10 +41,10 @@ public class RunISAC {
 
     public static void main(String[] args) throws IOException, ParseException, EPCompileException, EPDeployException {
 
-        String sparqlQuery = (args.length == 1 && args[0] != null) ? args[0] : sparqlQueryFilePath;
-        String eplQueries = (args.length == 2 && args[1] != null) ? args[1] : DefaulteplQueries;
-        String inputFile = (args.length == 3 && args[2] != null) ? args[2] : rdfInputFilePath;
-        String outputFile = (args.length == 4 && args[3] != null) ? args[3] : csvOutputFilePath;
+        String sparqlQuery = (args.length > 0 && args[0] != null) ? args[0] : sparqlQueryFilePath;
+        String eplQueries = (args.length > 1 && args[1] != null) ? args[1] : DefaulteplQueries;
+        String inputFile = (args.length > 2 && args[2] != null) ? args[2] : rdfInputFilePath;
+        String outputFile = (args.length > 3 && args[3] != null) ? args[3] : csvOutputFilePath;
         String log = outputFile.replace(".csv", ".log");
         org.apache.jena.query.ARQ.init();
 
