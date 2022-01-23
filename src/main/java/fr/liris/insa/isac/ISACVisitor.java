@@ -12,6 +12,8 @@ import java.util.stream.Stream;
 public class ISACVisitor implements OpVisitor {
 
     public Map<TPEvent, Map<Node, Set<TPEvent>>[]> joins = new HashMap<>();
+    public Map<Integer, Triple> tagsd = new HashMap<>();
+    public Map<Triple, Integer> tagsi = new HashMap<>();
     public Map<Node, List<String>> projVars = new HashMap<>();
     public List<String> eplQueries = new ArrayList<>();
     private boolean wildcard = true;
@@ -30,9 +32,9 @@ public class ISACVisitor implements OpVisitor {
             joinsP.put(triple.getPredicate(), new HashSet());
             Map<Node, Set<TPEvent>> joinsO = new HashMap<>();
             joinsO.put(triple.getObject(), new HashSet<>());
-
+            tagsi.put(triple, list.indexOf(triple));
+            tagsd.put(new Integer(list.indexOf(triple)), triple);
             joins.putIfAbsent(new TPEvent(triple, list.indexOf(triple)), new Map[]{joinsS, joinsP, joinsO});
-
 
         });
 

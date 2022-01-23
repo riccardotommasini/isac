@@ -122,7 +122,8 @@ public class ISACCompiler {
         FileWriter queryWriter = new FileWriter(eplQueries);
         FileWriter logWriter = new FileWriter(log);
 
-        permutations.entrySet().stream().sorted(Map.Entry.comparingByKey()).forEach(e -> {
+        List<Map.Entry<String, List<TPEvent>>> sorted = permutations.entrySet().stream().sorted(Map.Entry.comparingByKey()).collect(Collectors.toList());
+        sorted.forEach(e -> {
             try {
                 generateEPL(opVisitor, e.getKey(), e.getValue(), queryWriter, logWriter, prefixMapping);
             } catch (IOException ex) {
@@ -187,10 +188,9 @@ public class ISACCompiler {
 
             PatternFilterExpr pat = Patterns.filter(EVENT_TYPE, eventID + tag);
 
-            Filter filter = pat.getFilter();
-            Expression expression = filter.getFilter();
-
             for (int j = 0; j < key.nodes.length; j++) {
+                Filter filter = pat.getFilter();
+                Expression expression = filter.getFilter();
                 Node n = key.nodes[j];
                 if (!n.isVariable()) {
                     if (expression == null)
@@ -198,9 +198,8 @@ public class ISACCompiler {
                     else
                         filter.setFilter(Expressions.and(expression, Expressions.eq(rdfTermsS[i], encoding(n.getURI(), prefixMapping))));
                 }
-
                 if (n.isVariable()) {
-                    setFilterProperty(n, pat, maps, rdfTermsS[j], tags, visitor.projVars);
+                    setFilterProperty(n, pat, maps, rdfTermsS[j], tags, visitor.joins, visitor.projVars);
                 }
             }
 
@@ -208,6 +207,7 @@ public class ISACCompiler {
                 temp = Patterns.followedBy(temp, pat);
             else
                 temp = Patterns.followedBy(temp, Patterns.every(pat));
+//                temp = Patterns.followedBy(temp, pat);
 
             Map<Node, Set<TPEvent>>[] a = joins.get(key);
 
@@ -247,11 +247,12 @@ public class ISACCompiler {
         stmt.setFromClause(FromClause.create(PatternStream.create(temp)));
         String s = stmt.toEPL();
         queryWriter.write(s + ";" + LF);
+        queryWriter.flush();
         visitor.eplQueries.add(s);
         epls.add(s);
     }
 
-    private static void setFilterProperty(Node n, PatternFilterExpr pat, Map<Node, Set<TPEvent>>[] maps, String property, List<Integer> tags, Map<Node, List<String>> projVars) {
+    private static void setFilterProperty(Node n, PatternFilterExpr pat, Map<Node, Set<TPEvent>>[] maps, String property, List<Integer> tags, Map<TPEvent, Map<Node, Set<TPEvent>>[]> joins, Map<Node, List<String>> projVars) {
 
         Set<TPEvent> tripleEvents;
         Filter filter = pat.getFilter();
@@ -268,7 +269,9 @@ public class ISACCompiler {
             tripleEvents = maps[rdfTerm].get(n);
             if (tripleEvents != null)
                 tripleEvents.stream().min(Comparator.comparingInt(o -> tags.indexOf(o.tagname))).ifPresent(triple -> {
-                    if (tags.indexOf(triple.tagname) < tags.indexOf(curr)) {
+                    int i = tags.indexOf(triple.tagname);
+                    int i1 = tags.indexOf(curr);
+                    if (i < i1) {
                         Expression leftExpr = filter.getFilter();
                         for (String rdfTermS : rdfTermsS) {
                             if (NodeUtils.compareRDFTerms(n, triple.get(rdfTermS)) == Expr.CMP_EQUAL) {
