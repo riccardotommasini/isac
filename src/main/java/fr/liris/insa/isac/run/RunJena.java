@@ -13,7 +13,7 @@ import java.io.PrintWriter;
 public class RunJena {
     private static final String res = "/Users/rictomm/_Projects/isac/src/main/resources/";
     private static final String csvOutputFilePath = res + "output.jena.csv";
-    private static final String rdfInputFilePath = res + "data.nt";
+    private static final String rdfInputFilePath = res + "small.nt";
     private static final String sparqlQueryFilePath = res + "query.sparql";
 
     public static void main(String[] args) throws IOException {

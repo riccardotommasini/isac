@@ -62,6 +62,7 @@ public class RunISAC {
         pw.flush();
         lw.flush();
 
+
         InputStream eplFile = new FileInputStream(eplQueries);
         if (eplFile == null) {
             throw new RuntimeException("Failed to find file [" + eplQueries
@@ -94,23 +95,11 @@ public class RunISAC {
         // set deployment id to 'trivia'
         EPDeployment deployment = deploymentService.deploy(compiled, new DeploymentOptions().setDeploymentId(eplQueries));
 
+        ISACListener listener = new ISACListener(varlist, pw);
+
         EPStatement[] statements = deployment.getStatements();
         Arrays.stream(statements).forEach(statement -> {
-
-
-            statement.addListener((newData, oldData, s, r) -> {
-
-                for (EventBean ev : newData) {
-                    MapEventBean ev2 = ((MapEventBean) ev);
-                    String line = s.getName();
-                    for (String key : varlist) {
-                        line = line + "," + ev2.get(key).toString();
-                    }
-                    pw.println(line);
-                    pw.flush();
-                }
-            });
-
+            statement.addListener(listener);
         });
 
         Map<String, String> mp = prefixMapping.getNsPrefixMap();
@@ -144,7 +133,8 @@ public class RunISAC {
             TP o = new TP(subject, predicate, object);
 
             runtime.getEventService().sendEventBean(o, EVENT_TYPE);
-
+            pw.flush();
+            pw.flush();
             ref.i++;
         });
 
@@ -157,5 +147,30 @@ public class RunISAC {
         pw.close();
 
 
+    }
+
+    private static class ISACListener implements UpdateListener {
+
+
+        private List<String> varlist;
+        private PrintWriter pw;
+
+        public ISACListener(List<String> varlist, PrintWriter pw) {
+            this.varlist = varlist;
+            this.pw = pw;
+        }
+
+        @Override
+        public void update(EventBean[] newEvents, EventBean[] oldEvents, EPStatement statement, EPRuntime runtime) {
+            for (EventBean ev : newEvents) {
+                MapEventBean ev2 = ((MapEventBean) ev);
+                String line = statement.getName();
+                for (String key : varlist) {
+                    line = line + "," + ev2.get(key).toString();
+                }
+                pw.append(line);
+                pw.flush();
+            }
+        }
     }
 }

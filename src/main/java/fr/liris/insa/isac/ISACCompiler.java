@@ -186,18 +186,17 @@ public class ISACCompiler {
 
             PatternFilterExpr pat = Patterns.filter(EVENT_TYPE, eventID + tag);
 
+            Filter filter = pat.getFilter();
             for (int j = 0; j < key.nodes.length; j++) {
-                Filter filter = pat.getFilter();
                 Expression expression = filter.getFilter();
                 Node n = key.nodes[j];
                 if (!n.isVariable()) {
                     if (expression == null)
-                        filter.setFilter(expression = Expressions.eq(rdfTermsS[j], encoding(n.getURI(), prefixMapping)));
+                        filter.setFilter(Expressions.eq(rdfTermsS[j], encoding(n.getURI(), prefixMapping)));
                     else
-                        filter.setFilter(Expressions.and(expression, Expressions.eq(rdfTermsS[i], encoding(n.getURI(), prefixMapping))));
-                }
-                if (n.isVariable()) {
-                    setFilterProperty(n, pat, maps, rdfTermsS[j], tags, visitor.joins, visitor.projVars);
+                        filter.setFilter(Expressions.and(expression, Expressions.eq(rdfTermsS[j], encoding(n.getURI(), prefixMapping))));
+                } else {
+                    filter = setFilterProperty(n, pat, maps, rdfTermsS[j], tags, visitor.joins, visitor.projVars);
                 }
             }
 
@@ -248,7 +247,7 @@ public class ISACCompiler {
         epls.add(s);
     }
 
-    private static void setFilterProperty(Node n, PatternFilterExpr pat, Map<Node, Set<TPEvent>>[] maps, String property, List<Integer> tags, Map<TPEvent, Map<Node, Set<TPEvent>>[]> joins, Map<Node, List<String>> projVars) {
+    private static Filter setFilterProperty(Node n, PatternFilterExpr pat, Map<Node, Set<TPEvent>>[] maps, String property, List<Integer> tags, Map<TPEvent, Map<Node, Set<TPEvent>>[]> joins, Map<Node, List<String>> projVars) {
 
         Set<TPEvent> tripleEvents;
         Filter filter = pat.getFilter();
@@ -283,6 +282,7 @@ public class ISACCompiler {
                     }
                 });
         }
+        return filter;
     }
 
     private static String encoding(String url, PrefixMapping prefixMapping) {
