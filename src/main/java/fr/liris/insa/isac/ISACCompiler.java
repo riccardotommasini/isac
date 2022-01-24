@@ -200,10 +200,10 @@ public class ISACCompiler {
                 }
             }
 
-            if (i == p.size() - 1)
-                temp = Patterns.followedBy(temp, pat);
-            else
-                temp = Patterns.followedBy(temp, Patterns.every(pat));
+//            if (i == p.size() - 1)
+//                temp = Patterns.followedBy(temp, pat);
+//            else
+            temp = Patterns.followedBy(temp, Patterns.every(pat));
 //                temp = Patterns.followedBy(temp, pat);
 
             Map<Node, Set<TPEvent>>[] a = joins.get(key);

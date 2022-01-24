@@ -10,9 +10,9 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX wsdbm: <http://db.uwaterloo.ca/~galuc/wsdbm/>
 PREFIX sorg: <http://schema.org/>
 
-SELECT  ?v0 ?v2 ?v3
+SELECT  *
 WHERE
   { ?v0  wsdbm:subscribes  ?v1 . #t0
-    ?v2  sorg:caption      ?v3 . #t1 if t0 < t1 < t2 subject = t2.object if t0 < t2 < t1 subject=t2.object
+    ?v2  sorg:caption      ?v3 . #t1 if t0 < t1 < t2 subject = t2.object if t2 < t1 subject=t2.object
     ?v0  wsdbm:likes       ?v2 . #t2 t0.subject = t2.subject
   }

@@ -17,7 +17,7 @@ public class GenerateEPLQueries {
 
     private static final String res = "/Users/rictomm/_Projects/isac/src/main/resources/";
     private static final String log = res + "log.txt";
-    private static final String defaulteplQueries = res + "queries.epl";
+    private static final String defaulteplQueries = res + "queries.all.epl";
     private static final String sparqlQueryFilePath = res + "query.sparql";
 
     public static void main(String[] args) throws IOException {
@@ -41,7 +41,8 @@ public class GenerateEPLQueries {
                 queryWriter.flush();
 
                 String replacement = s.getAnnotations().get(0).getAttributes().get(0).getValue().toString();
-                FileWriter epl = new FileWriter(new File(eplQueries.replace("epl", replacement + ".epl")));
+                FileWriter epl = new FileWriter(new File(eplQueries.replace(".all", "").replace("epl", replacement + ".epl")));
+                FileWriter test = new FileWriter(new File(replacement + ".test.nt"));
                 epl.write(s.toEPL());
                 epl.flush();
                 epl.close();

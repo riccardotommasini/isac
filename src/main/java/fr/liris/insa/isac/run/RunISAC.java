@@ -34,17 +34,23 @@ import static org.apache.commons.lang3.StringUtils.EMPTY;
 public class RunISAC {
 
     private static final String res = "/Users/rictomm/_Projects/isac/src/main/resources/";
-    private static final String DefaulteplQueries = res + "queries.epl";
-    private static final String csvOutputFilePath = res + "output.csv";
-    private static final String rdfInputFilePath = res + "bigdata.nt";
-    private static final String sparqlQueryFilePath = res + "query.sparql";
+    private static String test = "all";
+    private static String sparqlQueryFilePath = res + "query.sparql";
+
 
     public static void main(String[] args) throws IOException, ParseException, EPCompileException, EPDeployException {
 
+
         String sparqlQuery = (args.length > 0 && args[0] != null) ? args[0] : sparqlQueryFilePath;
-        String eplQueries = (args.length > 1 && args[1] != null) ? args[1] : DefaulteplQueries;
-        String inputFile = (args.length > 2 && args[2] != null) ? args[2] : rdfInputFilePath;
-        String outputFile = (args.length > 3 && args[3] != null) ? args[3] : csvOutputFilePath;
+        test = (args.length > 1 && args[1] != null) ? args[1] : test;
+
+        String DefaulteplQueries = res + "queries." + test + ".epl";
+        String csvOutputFilePath = res + "output." + test + ".csv";
+        String rdfInputFilePath = res + test + ".test.nt";
+
+        String eplQueries = (args.length > 2 && args[2] != null) ? args[1] : DefaulteplQueries;
+        String inputFile = (args.length > 3 && args[3] != null) ? args[2] : rdfInputFilePath;
+        String outputFile = (args.length > 4 && args[4] != null) ? args[3] : csvOutputFilePath;
         String log = outputFile.replace(".csv", ".log");
         org.apache.jena.query.ARQ.init();
 
@@ -168,7 +174,8 @@ public class RunISAC {
                 for (String key : varlist) {
                     line = line + "," + ev2.get(key).toString();
                 }
-                pw.append(line);
+                pw.println(line);
+                System.out.println(line);
                 pw.flush();
             }
         }

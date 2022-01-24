@@ -12,15 +12,15 @@ import java.io.PrintWriter;
 
 public class RunJena {
     private static final String res = "/Users/rictomm/_Projects/isac/src/main/resources/";
-    private static final String csvOutputFilePath = res + "output.jena.csv";
+    private static final String csvOutputFilePath = res + "small.jena.csv";
     private static final String rdfInputFilePath = res + "small.nt";
     private static final String sparqlQueryFilePath = res + "query.sparql";
 
     public static void main(String[] args) throws IOException {
 
         String sparqlQuery = (args.length > 0 && args[0] != null) ? args[0] : sparqlQueryFilePath;
-        String input = (args.length > 0 && args[1] != null) ? args[1] : rdfInputFilePath;
-        String outputFile = (args.length > 0 && args[2] != null) ? args[2] : csvOutputFilePath;
+        String input = (args.length > 1 && args[1] != null) ? args[1] : rdfInputFilePath;
+        String outputFile = (args.length > 2 && args[2] != null) ? args[2] : csvOutputFilePath;
 
         org.apache.jena.query.ARQ.init();
 

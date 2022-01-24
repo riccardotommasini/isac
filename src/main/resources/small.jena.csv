@@ -1,0 +1,8 @@
+Start of Run [451355783150295]
+( ?v3 = "I am product 6" ) -> ( ?v2 = <http://db.uwaterloo.ca/~galuc/wsdbm/Product6> ) -> ( ?v0 = <http://db.uwaterloo.ca/~galuc/wsdbm/User6> ) ( ?v1 = <http://db.uwaterloo.ca/~galuc/wsdbm/Website6> ) -> [Root]
+( ?v3 = "I am product 5" ) -> ( ?v2 = <http://db.uwaterloo.ca/~galuc/wsdbm/Product5> ) -> ( ?v0 = <http://db.uwaterloo.ca/~galuc/wsdbm/User5> ) ( ?v1 = <http://db.uwaterloo.ca/~galuc/wsdbm/Website5> ) -> [Root]
+( ?v3 = "I am product 4" ) -> ( ?v2 = <http://db.uwaterloo.ca/~galuc/wsdbm/Product4> ) -> ( ?v0 = <http://db.uwaterloo.ca/~galuc/wsdbm/User4> ) ( ?v1 = <http://db.uwaterloo.ca/~galuc/wsdbm/Website4> ) -> [Root]
+( ?v3 = "I am product 3" ) -> ( ?v2 = <http://db.uwaterloo.ca/~galuc/wsdbm/Product3> ) -> ( ?v0 = <http://db.uwaterloo.ca/~galuc/wsdbm/User3> ) ( ?v1 = <http://db.uwaterloo.ca/~galuc/wsdbm/Website3> ) -> [Root]
+( ?v3 = "I am product 2" ) -> ( ?v2 = <http://db.uwaterloo.ca/~galuc/wsdbm/Product2> ) -> ( ?v0 = <http://db.uwaterloo.ca/~galuc/wsdbm/User2> ) ( ?v1 = <http://db.uwaterloo.ca/~galuc/wsdbm/Website2> ) -> [Root]
+( ?v3 = "I am product 1" ) -> ( ?v2 = <http://db.uwaterloo.ca/~galuc/wsdbm/Product1> ) -> ( ?v0 = <http://db.uwaterloo.ca/~galuc/wsdbm/User1> ) ( ?v1 = <http://db.uwaterloo.ca/~galuc/wsdbm/Website1> ) -> [Root]
+( ?v3 = "I am product 0" ) -> ( ?v2 = <http://db.uwaterloo.ca/~galuc/wsdbm/Product0> ) -> ( ?v0 = <http://db.uwaterloo.ca/~galuc/wsdbm/User0> ) ( ?v1 = <http://db.uwaterloo.ca/~galuc/wsdbm/Website0> ) -> [Root]
